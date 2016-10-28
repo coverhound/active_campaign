@@ -59,6 +59,33 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
+### Creating a resource
+The 5 actions currently supported are:
+- `create` Creates the resource
+- `update` Updates the resource
+- `delete` Deletes the resource
+- `find` Finds the resource
+- `list` Gets a list of resources
+
+You can create a new resource like this:
+
+```ruby
+module ActiveCampaign
+  class Friend < Resource
+    # Add your required attributes here - by default a resource will take any
+    # and all parameters that a user gives it
+    def initialize(required_attribute:, **params)
+      @params = { required_attribute: required_attribute }.merge(params)
+    end
+
+    # The key of each action is one of our 5 supported actions
+    # The value of each action is the corresponding ActiveCampaign action
+    action create: :friend_add
+    action update: :friend_edit
+  end
+end
+```
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/coverhound/active_campaign.
