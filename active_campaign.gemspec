@@ -12,7 +12,6 @@ Gem::Specification.new do |spec|
   spec.summary       = "Dead simple ActiveCampaign client"
   spec.description   = "Hides the crimes that are the ActiveCampaign API"
   spec.homepage      = "https://github.com/coverhound/active_campaign"
-  spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   spec.bindir        = "exe"
