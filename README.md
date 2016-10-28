@@ -1,28 +1,57 @@
 # ActiveCampaign
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/active_campaign`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to your Active Campaign navigator! This gem allows you to make API calls
+without having to experience the real life ActiveCampaign API!
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'active_campaign'
+gem 'active_campaign', github: "coverhound/active_campaign"
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install active_campaign
 
 ## Usage
 
-TODO: Write usage instructions here
+Before you can use ActiveCampaign, you will have to register clients! You can do
+so like this:
+
+```ruby
+ActiveCampaign.register_client(:client_name) do |config|
+  config.email = "david@example.com"
+  config.api_key = "fdalsdjf1242139210"
+end
+
+# can later be called like this:
+ActiveCampaign.client(:client_name)
+```
+
+If you want your client to be the default client, you'll want to set it up like
+this instead:
+
+```ruby
+ActiveCampaign.register_client(:default_client, default: true) do |config|
+# ...
+end
+
+# can later be called like this:
+ActiveCampaign.client
+```
+
+Once you have that set up, you can get rolling. API resources are passed into
+the client to perform their actions. For example, to create a new contact, you
+would do this:
+
+```ruby
+client = ActiveCampaign.client
+contact = ActiveCampaign::Contact.new(email: "hi@example.com")
+client.create!(contact)
+```
 
 ## Development
 
@@ -32,7 +61,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/active_campaign.
+Bug reports and pull requests are welcome on GitHub at https://github.com/coverhound/active_campaign.
 
 
 ## License
