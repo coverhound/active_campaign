@@ -18,3 +18,13 @@ class Minitest::Test
     assert value == false, "Expected #{value} to be false"
   end
 end
+
+if ENV["SPEC"]
+  require 'minitest/reporters'
+  reporter_options = { color: true }
+  Minitest::Reporters.use!(
+    Minitest::Reporters::SpecReporter.new(reporter_options),
+    ENV,
+    Minitest.backtrace_filter
+  )
+end
