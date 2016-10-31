@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["ber@bernardo.me"]
 
   spec.summary       = "Dead simple ActiveCampaign client"
-  spec.description   = "Hides the crimes that are the ActiveCampaign API"
+  spec.description   = "Allows for easy use of ActiveCampaign's API"
   spec.homepage      = "https://github.com/coverhound/active_campaign"
 
   if spec.respond_to?(:metadata)
