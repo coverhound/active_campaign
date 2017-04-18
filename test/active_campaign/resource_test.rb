@@ -11,7 +11,7 @@ class ActiveCampaign::ResourceTest < Minitest::Test
       action action_name => action_mapping
     end
   end
-  let(:params) { {} }
+  let(:params) { { email: "testing@email.com" } }
   subject { resource.new(params) }
 
   describe "actions" do
@@ -25,6 +25,15 @@ class ActiveCampaign::ResourceTest < Minitest::Test
       it "returns the action mapping" do
         assert_raises RuntimeError do
           subject.action(:foo)
+        end
+      end
+    end
+
+    describe "when no email param" do
+      let(:params) { {} }
+      it "raises an error" do
+        assert_raises RuntimeError do
+          subject.action(action_name)
         end
       end
     end

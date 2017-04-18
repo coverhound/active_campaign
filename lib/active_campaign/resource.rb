@@ -1,7 +1,15 @@
 module ActiveCampaign
   class Resource
     def initialize(**params)
-      @params = params
+      @params = format_params(params)
+    end
+
+    def format_params(params)
+      raise "no email attribute included in params" if params[:email].nil?
+
+      params.map do |k, v|
+        [:email, :phone].include?(k) ? [k, v] : ["%#{k.upcase}%, 0".to_sym, v]
+      end.to_h
     end
 
     attr_reader :params

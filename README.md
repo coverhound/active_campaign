@@ -49,7 +49,7 @@ would do this:
 
 ```ruby
 client = ActiveCampaign.client
-contact = ActiveCampaign::Contact.new(email: "hi@example.com")
+contact = ActiveCampaign::Contact.new(params: {email: "hi@example.com", first_name: "Tester"})
 client.create!(contact)
 ```
 
